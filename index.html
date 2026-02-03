@@ -1,0 +1,86 @@
+#Usuario
+#Entro a un link desde un letrero -> escribo feedback -> lo envio -> me voy
+
+#Owner
+#Entro a admin -> inicio sesión -> veo feedback -> lo gestiono
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Quejas y Sugerencias</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+  <h2>Quejas y Sugerencias</h2>
+  <textarea
+    id="feedback"
+    placeholder="Escribe tu feedback..."
+    rows="5"
+    cols="40"
+  ></textarea>
+
+  <br><br>
+
+  <button id="send">Enviar</button>
+
+  <script type="module">
+    console.log("🔥 El script está corriendo");
+
+    // 🔹 IMPORTS FIREBASE
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+   const firebaseConfig = {
+  apiKey: "AIzaSyC25qbw6KAeJXqJDe_yj-MoxlPVhn5ob0o",
+  authDomain: "feedbck-a684f.firebaseapp.com",
+  projectId: "feedbck-a684f",
+  storageBucket: "feedbck-a684f.firebasestorage.app",
+  messagingSenderId: "508943334834",
+  appId: "1:508943334834:web:fafc485fceff2a5b8b38ab",
+  measurementId: "G-C3T3X8R8RN"
+};
+
+    // 🔹 INICIALIZAR FIREBASE
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 🔹 BOTÓN ENVIAR
+    document.getElementById("send").addEventListener("click", async () => {
+      console.log("🟢 Click detectado");
+
+      const text = document.getElementById("feedback").value;
+
+      if (!text.trim()) {
+        alert("Escribe algo primero");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "feedback"), {
+          text: text,
+          createdAt: serverTimestamp(),
+          ownerId: "D3bv1W83nzdMNJriY0Tc0Wn7XaG3",
+          read: false
+        });
+
+        alert("Feedback enviado ✅");
+        document.getElementById("feedback").value = "";
+
+      } catch (error) {
+        console.error("❌ Error al guardar:", error);
+        alert("Error, revisa la consola");
+      }
+    });
+  </script>
+
+</body>
+</html>

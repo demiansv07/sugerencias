@@ -1,0 +1,22 @@
+button {
+    appearance: initial;
+    font-variant-ligatures: common-ligatures;
+    font-variant-caps: small-caps;
+    font-variant-numeric: oldstyle-nums;
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    cursor: pointer;
+}
+h2 {
+    font-variant-ligatures: common-ligatures;
+    font-variant-caps: normal;
+    font-variant-numeric: oldstyle-nums;
+    font-weight: bold;
+    font-size: xx-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color: #333399;
+    background-color: #f0f0f0;
+}
